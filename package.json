@@ -1,0 +1,27 @@
+{
+  "name": "budget",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev": "nodemon db"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "bootstrap": "^5.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.0",
+    "request": "^2.88.2",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.6"
+  }
+}
