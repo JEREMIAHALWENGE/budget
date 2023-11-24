@@ -4,8 +4,8 @@ import home from './components/home.vue';
 import register from './components/register.vue';
 import login from './components/login.vue';
 import about from './components/about.vue';
-import authenticated from './layouts/authenticated.vue';
-import guestlayout from './layouts/guest.vue';
+import authenticated from './components/authenticated.vue';
+
 
 const routes = [
   {

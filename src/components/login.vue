@@ -84,6 +84,7 @@ export default {
         const response = await axios(config); // Use axios for the request
 
         console.log(JSON.stringify(response.data));
+        this.$router.push({ name: "authenticated" });
       } catch (error) {
         console.error("Error while logging in:", error);
         this.alertVisible = true;
@@ -108,7 +109,7 @@ export default {
 .background {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: absolute; 
   background: rgb(250, 250, 250);
 }
 

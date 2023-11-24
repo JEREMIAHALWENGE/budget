@@ -1,11 +1,17 @@
 const mysql = require('mysql2');
+const dotenv = require('dotenv');
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+dotenv.config();
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'simauz1234',
-  database: 'jerrybay',
-  port: 3306 
+  host: process.env.mysql_host,
+  user: process.env.mysql_user,
+  password: process.env.mysql_password,
+  database: process.env.mysql_database,
+  port: process.env.mysql_port
 });
 
 connection.connect((err) => {
@@ -16,14 +22,9 @@ connection.connect((err) => {
   }
 });
 
-
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
-const app = express();
+ const app = express();
 const port = process.env.PORT || 3000;
-
+ 
 // Enable CORS for all routes
 app.use(cors());
 
@@ -44,20 +45,53 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
-     
 
 app.get("/", function (req, res) {
   res.send("Welcome to budget");
-});
+});  
 
 app.post("/login", function (req, res) {
-  console.log(req.body);
-  res.send('ok');
-});
+  const { emailaddress, password } = req.body;
+
+  const query = "SELECT * FROM users WHERE emailaddress = ? AND password = ?";
+  connection.query(query, [emailaddress, password], (err, result) => {
+    if (err) {
+      console.error("Error while authenticating user:", err);
+      res.status(500).json({ status: "error", message: "Internal Server Error" });
+    } else {
+      if (result.length > 0) {
+        console.log("User authenticated successfully");
+        res.status(200).json({ status: "success", message: "User authenticated successfully" });
+      } else {
+        console.log("Invalid email address or password");
+        res.status(401).json({ status: "error", message: "Invalid email address or password" });
+      }
+    }
+  });
+});      
+
 
 app.post("/register", function (req, res) {
-  console.log(req.body);
-  res.send('ok');
+  const {
+    firstname,
+    lastname,
+    contact,
+    address,
+    emailaddress,
+    password,
+  } = req.body;
+
+  const query = "INSERT INTO users (firstname, lastname, contact, address, emailaddress, password, date) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+
+  connection.query(query, [firstname, lastname, contact, address, emailaddress, password], (err, result) => {
+    if (err) {
+      console.error("Error while registering user:", err);
+      res.status(500).send("Internal Server Error");
+    } else {
+      console.log("User registered successfully");
+      res.status(200).send("OK");
+    }
+  });
 });
 
 const server = app.listen(port, function () {

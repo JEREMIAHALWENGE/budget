@@ -39,7 +39,7 @@ module.exports = {
       con.query(sql, function (err, rows) {
         if (err) callback(err, null);
         else callback(null, rows.insertId);
-      });
+      });   
     } catch (err) {
       console.log(err);
     } finally {
@@ -60,7 +60,7 @@ module.exports = {
       // null or undefined
       value == null ||
       // has length and it's zero
-      (value.hasOwnProperty("length") && value.length === 0) ||
+      (value.hasOwnProperty("length" ) && value.length === 0) ||
       // is an Object and has no keys
       (value.constructor === Object && Object.keys(value).length === 0)
     );

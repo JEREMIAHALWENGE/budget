@@ -127,8 +127,9 @@ export default {
       };
       try {
         const response = await axios(config); // Use axios for the request
-
+    
         console.log(JSON.stringify(response.data));
+        this.$router.push({ name: "login" });
       } catch (error) {
         console.error("Error while registering user:", error);
         this.alertVisible = true;
