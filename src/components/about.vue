@@ -47,8 +47,8 @@
       them. From doorstep delivery to in-store pickups, Budget adapts to your
       lifestyle, making every purchase a seamless and gratifying experience.
     </p>
-    <p
-      >In conclusion, Budget isn't just an online retail app; it's a destination
+    <p>
+      In conclusion, Budget isn't just an online retail app; it's a destination
       that empowers, inspires, and transforms the way you shop. With its vast
       selection, unbeatable affordability, user-centric design, and commitment
       to security, Budget is a beacon of innovation in the digital retail space.
@@ -56,13 +56,14 @@
       unparalleled value; welcome to Budget, where shopping is no longer a chore
       but a captivating adventure.
   </p>
+  
     
   </div>
 </template>
 
 <script>
 export default {
-  name:"about",
+  name: "about",
 };
 </script>
 

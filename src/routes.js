@@ -4,6 +4,8 @@ import home from './components/home.vue';
 import register from './components/register.vue';
 import login from './components/login.vue';
 import about from './components/about.vue';
+import authenticated from './layouts/authenticated.vue';
+import guestlayout from './layouts/guest.vue';
 
 const routes = [
   {
@@ -26,6 +28,12 @@ const routes = [
     path: '/about',
     component: about,
   },
+  {
+    name: 'authenticated',
+    path: '/authenticated',
+    component: authenticated,
+  },
+
 ];
 
 const router = createRouter({
